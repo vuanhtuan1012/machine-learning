@@ -27,21 +27,14 @@ function [X_norm, mu, sigma] = featureNormalize(X)
 %       
 
 mu = mean(X);
-sigma = std(X,1);
+sigma = std(X, 1);
 
+% repeat row vectors to matrices
 m = size(X, 1);
-t1 = mu(ones(1, m),:);
-t2 = sigma(ones(1,m),:);
-X_norm = (X-t1)./t2;
+mu_m = ones(m, 1) * mu;
+sigma_m = ones(m, 1) * sigma;
 
-
-% [m, n] = size(X);
-% X_norm = zeros(m, n);
-% for i = 1:n
-%     for j = 1:m
-%         X_norm(j,i) = (X(j,i) - mu(i))/sigma(i);
-%     end
-% end
+X_norm = (X - mu_m)./sigma_m;
 
 
 

@@ -19,10 +19,8 @@ m = length(y); % number of training examples
 
 
 [J, grad] = costFunction(theta, X, y);
-
-temp = theta(2:end);
-grad(2:end) = grad(2:end) + (lambda/m)*temp; % adjust gradient
-J = J + (lambda/2/m)*(temp'*temp); % adjust theta
+grad(2:end) = grad(2:end) + (lambda/m)*theta(2:end);
+J = J + (lambda/2/m)*theta(2:end)'*theta(2:end);
 
 % =============================================================
 

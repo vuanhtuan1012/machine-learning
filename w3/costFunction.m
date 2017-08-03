@@ -25,8 +25,7 @@ z = X * theta;
 h = sigmoid(z);
 
 % Compute gradients
-temp = h - y;
-grad = (1/m)*X'*temp;
+grad = (1/m) * X' * (h-y);
 
 % Compute J
 t1 = -y'*log(h);

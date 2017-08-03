@@ -41,18 +41,16 @@ z = X * theta;
 h = sigmoid(z);
 
 % Compute gradients
-temp = h - y;
-grad = (1/m)*X'*temp;
+grad = (1/m) * X' * (h-y);
 
 % Compute J
-t1 = -y'*log(h);
-t2 = -(1-y)'*log(1-h);
+t1 = -y' * log(h);
+t2 = -(1-y)' * log(1-h);
 J = (1/m)*(t1 + t2);
 
 % Regularization
-temp = theta(2:end);
-grad(2:end) = grad(2:end) + (lambda/m)*temp; % adjust gradient
-J = J + (lambda/2/m)*(temp'*temp); % adjust theta
+grad(2:end) = grad(2:end) + (lambda/m) * theta(2:end); % adjust gradient
+J = J + (lambda/2/m)* theta(2:end)' * theta(2:end); % adjust theta
 
 % =============================================================
 
