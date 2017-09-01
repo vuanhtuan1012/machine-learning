@@ -27,8 +27,8 @@ m = size(X, 1);
          
 % You need to return the following variables correctly 
 % J = 0;
-Theta1_grad = zeros(size(Theta1));
-Theta2_grad = zeros(size(Theta2));
+% Theta1_grad = zeros(size(Theta1));
+% Theta2_grad = zeros(size(Theta2));
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the code by working through the
@@ -85,10 +85,8 @@ end
 
 % Compute regularization term
 r1 = Theta1(:, 2:end);
-r1 = r1(:).^2;
 r2 = Theta2(:, 2:end);
-r2 = r2(:).^2;
-R = (ones(1,size(r1,1))*r1 + ones(1,size(r2,1))*r2)*lambda/(2*m);
+R = (r1(:)'*r1(:) + r2(:)'*r2(:))*lambda/(2*m);
 
 % Compute the cost J
 j1 = -yvec.*log(h);
