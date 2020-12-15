@@ -54,7 +54,7 @@ repeat until <img src="https://render.githubusercontent.com/render/math?math=%7C
 
 <img src="https://render.githubusercontent.com/render/math?mode=inline&math=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%20%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Ctheta_j%7DJ%28%5Ctheta%29"> <img src="https://render.githubusercontent.com/render/math?mode=inline&math=%28j%20%3D%20%5Coverline%7B1%2C%20n%7D%29">
 
-}  (simultaneously update <img src="https://render.githubusercontent.com/render/math?mode=inline&math=J%28%5Ctheta%29">)
+}  (simultaneously update <img src="https://render.githubusercontent.com/render/math?mode=inline&math=%5Ctheta_j">)
 
 - <img src="https://render.githubusercontent.com/render/math?mode=inline&math=n"> : number of features
 - <img src="https://render.githubusercontent.com/render/math?mode=inline&math=%5Calpha%20"> : learning rate
