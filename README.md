@@ -51,7 +51,9 @@ Gradient Descent is an algorithm to find <img src="https://render.githubusercont
 
 **Algorithm:**
 repeat until <img src="https://render.githubusercontent.com/render/math?math=%7CJ%28%5Ctheta%29%5E%7B%28i%2B1%29%7D%20%20-%20J%28%5Ctheta%29%5E%7B%28i%29%7D%7C%20%5Cleq%20%5Cepsilon"> {
+
 <img src="https://render.githubusercontent.com/render/math?mode=inline&math=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%20%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Ctheta_j%7DJ%28%5Ctheta%29"> <img src="https://render.githubusercontent.com/render/math?mode=inline&math=%28j%20%3D%20%5Coverline%7B1%2C%20n%7D%29">
+
 }  (simultaneously update <img src="https://render.githubusercontent.com/render/math?mode=inline&math=J%28%5Ctheta%29">)
 
 - <img src="https://render.githubusercontent.com/render/math?mode=inline&math=n"> : number of features
