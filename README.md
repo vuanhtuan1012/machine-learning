@@ -40,3 +40,20 @@ Find the function to predict <img src="https://render.githubusercontent.com/rend
 <img src="https://render.githubusercontent.com/render/math?math=%5CTheta%20%3D%20%5Cbegin%7Bbmatrix%7D%0A%5Ctheta_0%5C%5C%20%0A%5Ctheta_1%5C%5C%20%0A%5Cvdots%5C%5C%20%0A%5Ctheta_n%0A%5Cend%7Bbmatrix%7D"></p>
 
 - <img src="https://render.githubusercontent.com/render/math?mode=inline&math=n"> : number of features.
+
+### Gradient Descent
+
+Gradient Descent is an algorithm to find <img src="https://render.githubusercontent.com/render/math?mode=inline&math=%5Ctheta"> so that <img src="https://render.githubusercontent.com/render/math?mode=inline&math=J%28%5Ctheta%29"> is minimal.
+
+<p align="center">
+<img src="https://render.githubusercontent.com/render/math?math=J%28%5Ctheta%29%20%3D%20%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%20Cost%28%5Cwidehat%7By%7D%5E%7B%28i%29%7D%2Cy%5E%7B%28i%29%7D%29">
+</p>
+
+**Algorithm:**
+repeat until <img src="https://render.githubusercontent.com/render/math?math=%7CJ%28%5Ctheta%29%5E%7B%28i%2B1%29%7D%20%20-%20J%28%5Ctheta%29%5E%7B%28i%29%7D%7C%20%5Cleq%20%5Cepsilon"> {
+<img src="https://render.githubusercontent.com/render/math?mode=inline&math=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%20%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Ctheta_j%7DJ%28%5Ctheta%29"> <img src="https://render.githubusercontent.com/render/math?mode=inline&math=%28j%20%3D%20%5Coverline%7B1%2C%20n%7D%29">
+}  (simultaneously update <img src="https://render.githubusercontent.com/render/math?mode=inline&math=J%28%5Ctheta%29">)
+
+- <img src="https://render.githubusercontent.com/render/math?mode=inline&math=n"> : number of features
+- <img src="https://render.githubusercontent.com/render/math?mode=inline&math=%5Calpha%20"> : learning rate
+- <img src="https://render.githubusercontent.com/render/math?mode=inline&math=%5Cepsilon%20"> : convergence condition
