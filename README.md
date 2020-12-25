@@ -194,7 +194,7 @@ The figure below presents the data set in 3D space.
 
 There's only one point that we need to pay attention is house sizes are about 1000 times the number of bedrooms. Therefore, we should perform feature normalization before launching gradient descent so that it converges much more quickly.
 
-Create the function `normalize_feature()`
+Create the function `normalize_features()`
 ```Python
 def normalize_features(X):
     mu = np.mean(X, axis=0)
