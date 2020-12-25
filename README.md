@@ -129,7 +129,7 @@ def cost_fn(X, w, Y):
     D = Yh - Y
     cost = np.mean(D**2)
     return cost
- 
+
 def gradient_descent(X, Y, w, lr, epochs):
     logs = list()
     m = X.shape[0]
