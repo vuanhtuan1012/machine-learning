@@ -50,6 +50,7 @@ Gradient Descent is an algorithm to find <img src="https://render.githubusercont
 </p>
 
 **Algorithm:**
+
 repeat until <img src="https://render.githubusercontent.com/render/math?math=%7CJ%28%5Ctheta%29%5E%7B%28i%2B1%29%7D%20%20-%20J%28%5Ctheta%29%5E%7B%28i%29%7D%7C%20%5Cleq%20%5Cepsilon"> {
 
 <img src="https://render.githubusercontent.com/render/math?math=%5Ctheta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%20%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Ctheta_j%7DJ%28%5Ctheta%29"> <img src="https://render.githubusercontent.com/render/math?math=%28j%20%3D%20%5Coverline%7B1%2C%20n%7D%29">
@@ -59,3 +60,18 @@ repeat until <img src="https://render.githubusercontent.com/render/math?math=%7C
 - <img src="https://render.githubusercontent.com/render/math?math=n"> : number of features
 - <img src="https://render.githubusercontent.com/render/math?math=%5Calpha%20"> : learning rate
 - <img src="https://render.githubusercontent.com/render/math?math=%5Cepsilon%20"> : convergence condition
+
+
+From the formula of <img src="https://render.githubusercontent.com/render/math?math=J%28%5Ctheta%29">, they found the formula below is correct in both cases of linear and logistic regression.
+
+<p align="center">
+<img src="https://render.githubusercontent.com/render/math?math=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%20%5Ctheta_j%7DJ%28%5Ctheta%29%20%3D%20%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%28%5Cwidehat%7By%7D%5E%7B%28i%29%7D-y%5E%7B%28i%29%7D%29x_j%5E%7B%28i%29%7D">
+</p>
+
+Do **vectorization**, we have the algorithm gradient descent is:
+
+repeat until <img src="https://render.githubusercontent.com/render/math?math=%7CJ%28%5Ctheta%29%5E%7B%28i%2B1%29%7D%20%20-%20J%28%5Ctheta%29%5E%7B%28i%29%7D%7C%20%5Cleq%20%5Cepsilon"> {
+
+<img src="https://render.githubusercontent.com/render/math?math=%5CTheta%20%3A%3D%20%5CTheta%20-%20%5Cfrac%7B%5Calpha%20%7D%7Bm%7DX%5ET%28%5Cwidehat%7BY%7D-Y%29">
+
+} 
