@@ -78,7 +78,9 @@ repeat until <img src="https://render.githubusercontent.com/render/math?math=%7C
 
 ## Linear Regression
 
-In this section, I'll talk about the programming exercise of week 2. The code source is rewritten in Python at [linear regression](linear%20regression.ipynb). If you want to refer to Matlab codes, they are in the diretory [w2](w2/).
+In this section, I'll talk about the programming exercise of week 2. The code source is rewritten in Python using [NumPy](https://numpy.org/). I avoid using frameworks like [PyTorch](https://pytorch.org/) since they are too powerful in comparison with these exercises.
+
+The code source is in the Jupyter notebook [linear regression](linear%20regression.ipynb). If you want to refer to Matlab codes, they are in the diretory [w2](w2/).
 
 In general, the workflow of two assignments (linear regression with one variable and linear regression with multiple variables) is presented in the figure below.
 
@@ -96,7 +98,9 @@ Finally, I do one more step visualization to figure out the result obtained.
 
 ### Linear Regression with one variable
 
-In this assignment, you need to predict profits for a food truck. Suppose you are the CEO of a restaurant franchise and considering different cities for opening a new outlet. The chain already has trucks in various cities and you have data for profits and populations from the cities. They are presented in the figure below. A negative value for profit indicates a loss.
+In this assignment, you need to predict profits for a food truck.
+
+Suppose you are the CEO of a restaurant franchise and considering different cities for opening a new outlet. The chain already has trucks in various cities and you have data for profits and populations from the cities. They are presented in the figure below. A negative value for profit indicates a loss.
 
 <p align="center">
 <img src="images/linear_regression_restaurant.svg" width="100%">
