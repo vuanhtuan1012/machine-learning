@@ -80,7 +80,7 @@ repeat until <img src="https://render.githubusercontent.com/render/math?math=%7C
 
 In this section, I'll talk about the programming exercise of week 2. The code source is rewritten in Python using [NumPy](https://numpy.org/). I avoid using frameworks like [PyTorch](https://pytorch.org/) since they are too powerful in comparison with these exercises.
 
-The code source is in the Jupyter notebook [linear regression](linear%20regression.ipynb). If you want to refer to Matlab codes, they are in the diretory [w2](w2/).
+The code source is in the Jupyter notebook [linear regression](linear%20regression.ipynb). If you want to refer to Matlab codes, they are in the directory [w2](w2/).
 
 In general, the workflow of two assignments (linear regression with one variable and linear regression with multiple variables) is presented in the figure below.
 
