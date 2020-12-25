@@ -105,3 +105,75 @@ Suppose you are the CEO of a restaurant franchise and considering different citi
 <p align="center">
 <img src="images/linear_regression_restaurant.svg" width="100%">
 </p>
+
+#### Load data
+
+```Python
+DATA_FILE = "w2/ex1data1.txt"
+data = np.loadtxt(DATA_FILE, delimiter=",")
+data[:5,:]
+X = data[:,1]  # population
+Y = data[:,2]  # profit
+```
+- The numpy method `loadtxt()` load data from a text file to numpy array.
+
+#### Define functions
+
+```Python
+def predict(X, w):
+    Yh = np.matmul(X, w)
+    return Yh
+
+def cost_fn(X, w, Y):
+    Yh = predict(X, w)
+    D = Yh - Y
+    cost = np.mean(D**2)
+    return cost
+ 
+def gradient_descent(X, Y, w, lr, epochs):
+    logs = list()
+    m = X.shape[0]
+    for i in range(epochs):
+        # update weights
+        Yh = predict(X, w)
+        w = w - (lr/m)*np.matmul(X.T,(Yh-Y))
+        # compute cost
+        cost = cost_fn(X, w, Y)
+        logs.append(cost)
+    return w, logs
+```
+- The numpy method `matmul()` perform a matrix product of two arrays.
+
+#### Prepare data
+
+```Python
+X = np.column_stack((np.ones(X.shape[0]), X))  # add column of ones to X
+X[:5,]
+```
+- The numpy method `column_stack()` stacks a sequence of 1-D or 2-D arrays to a single 2-D arrays.
+
+#### Training
+
+```Python
+w = np.zeros(X.shape[1])  # weights initialization
+lr = 1e-2  # learning rate
+epochs = 1500  # number of iteration
+w, logs = gradient_descent(X, Y, w, lr, epochs)
+```
+
+After 1500 iterations we will obtaine the new weights `w`
+```
+array([-3.63029144,  1.16636235])
+```
+
+The line predicted is shown in the figure below.
+
+<p align="center">
+<img src="images/linear_regression_restaurant_result.svg" width="100%">
+</p>
+
+And the figure below figures out the variation of cost.
+
+<p align="center">
+<img src="images/linear_regression_restaurant_cost.svg" width="100%">
+</p>
