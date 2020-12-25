@@ -177,3 +177,55 @@ And the figure below figures out the variation of cost.
 <p align="center">
 <img src="images/linear_regression_restaurant_cost.svg" width="100%">
 </p>
+
+### Linear Regression with multiple variables
+
+In this assignment, you need to predict the prices of houses.
+
+Suppose you are selling your house and you want to know what a good market price would be. The file `ex1data2.txt` contains a data set of housing prices in Portland, Oregon. The first columns is the size of the house (in square fit), the second column is the number of bedrooms, and the third column is the price of the house.
+
+The figure below presents the data set in 3D space.
+
+<p align="center">
+<img src="images/linear_regression_house.svg" width="100%">
+</p>
+
+There's only one point that we need to pay attention is house sizes are about 1000 times the number of bedrooms. Therefore, we should perform feature normalization before launching gradient descent so that it converges much more quickly.
+
+Create the function `normalize_feature()`
+```Python
+def normalize_features(X):
+    mu = np.mean(X, axis=0)
+    std = np.std(X, axis=0)
+    X_norm = (X - mu)/std
+    return X_norm
+```
+
+Then normalize variables before put them in gradient descent.
+```Python
+X_norm = normalize_features(X)
+X_norm = np.column_stack((np.ones(X_norm.shape[0]), X_norm))
+```
+
+The other steps are completely similar to the ones of the assignment above. We don't need to rewrite functions `predict()`, `cost_fn()`, and `gradient_descent()` since they work well with matrices multi columns.
+
+```Python
+w = np.zeros(X_norm.shape[1])  # weights initialization
+lr = 1e-2  # learning rate
+epochs = 400  # number of iterations
+w, logs = gradient_descent(X_norm, Y, w, lr, epochs)
+```
+
+After 400 iterations, we have the surface of prediction in the figure below.
+
+<p align="center">
+<img src="images/linear_regression_house_result.svg" width="100%">
+</p>
+
+You can see that the problem of one variable has the prediction is a line in the surface of inputs and outputs; the problem of two variables has the prediction is a surface in the space of inputs and outputs; the problem of three variables will have the prediction is a space in the 4D space of inputs and outputs; and so on.
+
+From the logs of gradient descent, we also figure out the variation of cost of our model in the figure below.
+
+<p align="center">
+<img src="images/linear_regression_house_cost.svg" width="100%">
+</p>
