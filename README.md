@@ -100,7 +100,9 @@ Finally, I do one more step visualization to figure out the result obtained.
 
 In this assignment, you need to predict profits for a food truck.
 
-Suppose you are the CEO of a restaurant franchise and considering different cities for opening a new outlet. The chain already has trucks in various cities and you have data for profits and populations from the cities. They are presented in the figure below. A negative value for profit indicates a loss.
+Suppose you are the CEO of a restaurant franchise and considering different cities for opening a new outlet. The chain already has trucks in various cities and you have data for profits and populations from the cities.
+
+The data set is stored in the file `ex1data1.txt` and is presented in the figure below. A negative value for profit indicates a loss.
 
 <p align="center">
 <img src="images/linear_regression_restaurant.svg" width="100%">
