@@ -231,3 +231,104 @@ The gradient descent logs help us figure out the variation of our model's cost i
 <p align="center">
 <img src="images/linear_regression_house_cost.svg" width="100%">
 </p>
+
+## Logistic Regression
+
+This section mentions the programming exercise of week 3. These assignments' workflow is similar to the one of linear regression and is presented in the figure below.
+
+<p align="center">
+<img src="images/logistic_regression_workflow.svg"/>
+</p>
+
+It consists of four main steps:
+- Load Data: load data from text files: `ex2data1.txt` and `ex2data2.txt`
+- Define functions: define functions to estimate outputs, compute cost, gradients, etc.
+- Prepare Data: prepare data for optimization.
+- Optimization: initialize weights and launch the optimizing function. In this step, we will use the built-in function named [fmin_tnc](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin_tnc.html) to find optimal weights.
+
+### Logistic Regression without regularization
+
+In this part, we will build a logistic regression model to **predict whether a student is admitted in to a university**.
+
+Suppose that you are the university department administrator and want to determine each applicant's admission chance based on their results on two exams.
+
+You have historical data from previous applicants. In the text file `ex2data1.txt`, it contains the applicant's scores on two exams (in the first two columns) and the admission decision (the third column).
+
+The figure below presents your data intuitively.
+
+<p align="center">
+<img src="images/logistic_regression_admission.svg"/>
+</p>
+
+#### Load data
+```Python
+DATA_FILE = "w3/ex2data1.txt"
+data = np.loadtxt(DATA_FILE, delimiter=",")
+data[:5,:]
+X = data[:,:2]  # exam scores
+Y = data[:,2]  # admission decision
+```
+
+In this part, we load data from the text file `ex2data1.txt` into NumPy variables `X` and `Y`.
+
+#### Define functions
+```Python
+def sigmoid(Z):
+    return 1/(1+np.exp(-Z))
+
+def estimate(w, X):
+    Z = np.matmul(X, w)
+    Yh = sigmoid(Z)
+    return Yh
+
+def cost_func(w, X, Y):
+    Yh = estimate(w, X)
+    c0 = -np.matmul(Y.T, np.log(Yh))
+    c1 = -np.matmul((1-Y).T, np.log(1-Yh))
+    cost = (c0 + c1)/len(X)
+    return cost
+
+def gradient(w, X, Y):
+    Yh = estimate(w, X)
+    D = Yh - Y
+    grad = np.matmul(X.T, D)/len(X)
+    return grad
+
+def predict(w, X):
+    Yh = estimate(w, X)
+    P = np.array([1. if p >= 0.5 else 0. for p in Yh])
+    return P
+```
+
+In this part, we define functions:
+- `estimate()` is to compute the probability of admission from exams' scores and the weights.
+- `cost_func()` is to compute the cost of estimation.
+- `gradient()` returns the gradients of cost function.
+- `predict()` returns the prediction of an admission decision.
+
+As we will use the SciPy fuction [fmin_tnc](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin_tnc.html) to optimze the weights, the parameters of functions `cost_func()` and `gradient()` needs to respect its rule: the weights first, then the inputs, the outputs.
+
+#### Prepare data
+```Python
+X = np.column_stack((np.ones(X.shape[0]), X))
+```
+
+We add a column of ones into `X`.
+
+#### Optimization
+```Python
+w = np.zeros(X.shape[1])  # initialize weights
+w_opt,_,_ = opt.fmin_tnc(func=cost_func, x0=w, fprime=gradient, args=(X, Y))
+```
+
+We call the SciPy function [fmin_tnc](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin_tnc.html) to find the optimal weights. This function needs four inputs:
+- `func` : the function to optimize. In our case, it's the function `cost_func()`.
+- `x0`: the initial estimate of the minimum. It's the weights `w` in our case.
+- `fprime`: the function to compute the gradients of the function in `func`. In our case, it's the fuction `gradient()`.
+- `args`: arguments to pass to functions in `func` and `fprime`. It's `X` and `Y` in our case.
+
+The optimal weights are returned in `w_opt`. We found the training accuracy is 89% and the decision boundary is shown in the figure below.
+
+<p align="center">
+<img src="images/logistic_regression_admission_result.svg"/>
+</p>
