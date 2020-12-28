@@ -89,10 +89,10 @@ In general, the workflow of two assignments (linear regression with one variable
 </p>
 
 It consists of four steps:
-- Load Data: load data from text files, `ex1data1.txt` and `ex1data2.txt`.
+- Load Data: load data from text files: `ex1data1.txt` and `ex1data2.txt`.
 - Define functions: define functions to predict outputs, to compute cost, to normalize features, and to carry out the algorithm gradient descent.
-- Prepare Data: add column of ones to variables, do normalize features if needed.
-- Training: initialize weights, learning rate, and number of iterations (called *epochs*) then lauch gradient descent.
+- Prepare Data: add a column of ones to variables, do normalize features if needed.
+- Training: initialize weights, learning rate, and a number of iterations (called *epochs*), then launch gradient descent.
 
 Finally, I do one more step visualization to figure out the result obtained.
 
@@ -100,7 +100,7 @@ Finally, I do one more step visualization to figure out the result obtained.
 
 In this assignment, you need to predict profits for a food truck.
 
-Suppose you are the CEO of a restaurant franchise and considering different cities for opening a new outlet. The chain already has trucks in various cities and you have data for profits and populations from the cities.
+Suppose you are the CEO of a restaurant franchise and considering different cities for opening a new outlet. The chain already has trucks in various cities, and you have data for profits and populations from the cities.
 
 The data set is stored in the file `ex1data1.txt` and is presented in the figure below. A negative value for profit indicates a loss.
 
@@ -117,7 +117,7 @@ data[:5,:]
 X = data[:,1]  # population
 Y = data[:,2]  # profit
 ```
-- The numpy method `loadtxt()` load data from a text file to numpy array.
+- The numpy method `loadtxt()` loads data from a text file to a numpy array.
 
 #### Define functions
 
@@ -144,7 +144,7 @@ def gradient_descent(X, Y, w, lr, epochs):
         logs.append(cost)
     return w, logs
 ```
-- The numpy method `matmul()` perform a matrix product of two arrays.
+- The numpy method `matmul()` performs a matrix product of two arrays.
 
 #### Prepare data
 
@@ -163,7 +163,7 @@ epochs = 1500  # number of iteration
 w, logs = gradient_descent(X, Y, w, lr, epochs)
 ```
 
-After 1500 iterations we will obtaine the new weights `w`
+After 1500 iterations, we will obtain the new weights `w`
 ```
 array([-3.63029144,  1.16636235])
 ```
@@ -184,7 +184,7 @@ And the figure below figures out the variation of cost.
 
 In this assignment, you need to predict the prices of houses.
 
-Suppose you are selling your house and you want to know what a good market price would be. The file `ex1data2.txt` contains a data set of housing prices in Portland, Oregon. The first columns is the size of the house (in square fit), the second column is the number of bedrooms, and the third column is the price of the house.
+Suppose you are selling your house and you want to know what a good market price would be. The file `ex1data2.txt` contains a data set of housing prices in Portland, Oregon. The first column is the size of the house (in square fit), the second column is the number of bedrooms, and the third column is the price of the house.
 
 The figure below presents the data set in 3D space.
 
@@ -192,7 +192,7 @@ The figure below presents the data set in 3D space.
 <img src="images/linear_regression_house.svg" width="100%">
 </p>
 
-There's only one point that we need to pay attention is house sizes are about 1000 times the number of bedrooms. Therefore, we should perform feature normalization before launching gradient descent so that it converges much more quickly.
+There's only one point that we need to pay attention to: house sizes are about 1000 times the number of bedrooms. Therefore, we should perform feature normalization before launching gradient descent so that it converges much more quickly.
 
 Create the function `normalize_features()`
 ```Python
@@ -209,7 +209,7 @@ X_norm = normalize_features(X)
 X_norm = np.column_stack((np.ones(X_norm.shape[0]), X_norm))
 ```
 
-The other steps are completely similar to the ones of the assignment above. We don't need to rewrite functions `predict()`, `cost_fn()`, and `gradient_descent()` since they work well with matrices multi columns.
+The other steps are completely similar to the ones of the assignment above. We don't need to rewrite functions `predict()`, `cost_fn()`, and `gradient_descent()` since they work well with matrices multi-columns.
 
 ```Python
 w = np.zeros(X_norm.shape[1])  # weights initialization
@@ -224,9 +224,9 @@ After 400 iterations, we have the surface of prediction in the figure below.
 <img src="images/linear_regression_house_result.svg" width="100%">
 </p>
 
-You can see that the problem of one variable has the prediction is a line in the surface of inputs and outputs; the problem of two variables has the prediction is a surface in the space of inputs and outputs; the problem of three variables will have the prediction is a space in the 4D space of inputs and outputs; and so on.
+Intuitively, linear regression prediction with one variable is a line in the surface of inputs and outputs. The prediction of two variables is the surface. The prediction of the three variables is space, and so on.
 
-From the logs of gradient descent, we also figure out the variation of cost of our model in the figure below.
+The gradient descent logs help us figure out the variation of our model's cost in the figure below.
 
 <p align="center">
 <img src="images/linear_regression_house_cost.svg" width="100%">
