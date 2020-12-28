@@ -332,3 +332,58 @@ The optimal weights are returned in `w_opt`. We found the training accuracy is 8
 <p align="center">
 <img src="images/logistic_regression_admission_result.svg"/>
 </p>
+
+### Regularized Logistic Regression
+
+In this part, we will implement regularized logistic regression to **predict whether microchips from a fabrication plant pass quality assurance (QA).** During QA, each microchip goes through various tests to ensure it is functioning correctly.
+
+Suppose you are the factory's product manager, and you have the test results for some microchips on two different tests. From these two tests, you would like to determine whether the microchips should be accepted or rejected.
+
+The dataset of test results on past microchips is in the text file `ex2data2.txt`. The figure below presents the dataset intuitively.
+
+<p align="center">
+<img src="images/logistic_regression_qa.svg"/>
+</p>
+
+The figure shows that the dataset cannot be separated by a straight-line. A straight-forward application of logistic regression will not perform well on this dataset since *logistic regression will only find a linear decision boundary*.
+
+One way to fit the data better is to create more features from each data point. We will create a function named `map_feature()` to do this. While the *feature mapping allows us to build a more expressive classifier, it also more susceptible to overfitting*. Therefore, we will implement regularized logistic regression to fit data and to combat the overfitting problem.
+
+#### Define functions
+```Python
+def map_feature(X1, X2, degree=6):
+    nb_features = (degree+1)*(degree+2)/2
+    nb_features = int(nb_features)
+    m = len(X1) if X1.size > 1 else 1
+    X = np.ones((m, nb_features))
+    idx = 1
+    for i in range(1,degree+1):
+        for j in range(i+1):
+            T = (X1**(i-j))*(X2**j)
+            X[:,idx] = T
+            idx += 1
+    return X
+
+def cost_func_reg(w, X, Y, ld):
+    cost = cost_func(w, X, Y)
+    cost += np.sum(w[1:]**2)*ld/(2*len(X))
+    return cost
+
+def gradient_reg(w, X, Y, ld):
+    grad = gradient(w, X, Y)
+    grad[1:] = grad[1:] + w[1:]*ld/len(X)
+    return grad
+```
+
+- `map_feature()` transforms our vector of two features into a 28-dimensional vector (with default `degree` = 6).
+- `cost_func_reg()`  and `gradient_reg()` add regularized parts to corresponding fuctions `cost_func()`, `gradient()`.
+
+The other steps are similar to the ones in the section logistic regression without regularization.
+
+After finding optimal weights, we found the training accuracy is 83.1%, and the decision boundary is shown in the figure below.
+
+<p align="center">
+<img src="images/logistic_regression_qa_result.svg"/>
+</p>
+
+The complete source code is in the notebook [logistic regression](logistic%20regression.ipynb). And you want to refer to the Matlab code, it's in the directory [w3](w3/).
