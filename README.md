@@ -1,5 +1,9 @@
 # Machine Learning
 
+1. [Supervised Learning](#supervised-learning)
+2. [Linear Regression](#linear-regression)
+3. [Logistic Regression](#logistic-regression)
+
 ## Supervised Learning
 
 ### Problem
